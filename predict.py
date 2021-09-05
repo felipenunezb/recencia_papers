@@ -74,7 +74,7 @@ def main(args):
         ds_dict[lang] = input_sub #save in dict, for future reference
         
         #Load embedding
-        test_embeddings = np.load(os.path.join(args.output_dir, f"{fl_type}_abstract_embedding_{lang}.npy"))
+        test_embeddings = np.load(os.path.join(args.emb_folder, f"{fl_type}_abstract_embedding_{lang}.npy"))
         
         pred_folds = []
         model_inputs = np.concatenate([np.expand_dims(np.array(input_sub['Year']), axis=1), test_embeddings], axis=1)
@@ -82,7 +82,7 @@ def main(args):
         for fold in range(5):
             logger.info(f"Lang: {lang} - Fold: {fold}")
             model = cb.CatBoostRegressor()
-            path_str = os.path.join(args.emb_folder, f"cat_{lang}_{fold}.cbm")
+            path_str = os.path.join(args.models_folder, f"cat_{lang}_{fold}.cbm")
             model.load_model(path_str)
 
             prediction = model.predict(model_inputs, task_type='CPU')
