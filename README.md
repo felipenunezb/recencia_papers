@@ -10,6 +10,14 @@ If you run into any trouble with the setup/code or have any questions please con
 ## HARDWARE/SOFTWARE: (The following specs were used to create the original solution)
 * I used a common [Google Colab Notebook](https://colab.research.google.com) instance with GPU enabled (whichever Google provided at the time of run).
 
+## Example
+
+There are 2 Notebook examples saved in the examples folder.
+
+1. Recencia_Complete_demo.ipynb: Preprocess, train and predictions for the competition data. [Open in Google Colab](https://colab.research.google.com/drive/1KigW7wmRNurhIeh-QpQwX3awE6wkIAMG?usp=sharing)
+
+2. Recencia_FinalTest.ipynb: Final test prediction. [Open in Google Colab](https://colab.research.google.com/drive/10alE-Og8zbNJMpUI828uXWy8J-xSu622?usp=sharing)
+
 ## MODEL BUILD:
 
 1. Data PreProcessing (Generate Embeddings):
@@ -18,10 +26,10 @@ If you run into any trouble with the setup/code or have any questions please con
 * arguments:
     * input_file: folder where the train.csv has been saved
     * max_length: this controls how much text from the abstracts will be encoded. If shorter, the text will be padded. If longer, it will be truncated. Some models won't allow more than 512 tokens. Better results between 180 and 250.
-    * output_dit: folder to store the results embeddings.
+    * output_dir: folder to store the results embeddings.
     * do_train/do_test: whether you are generating embeddings for the training of test set. This is important for the output files naming.
 
-Training set
+*Training set*
  ```python
 !python /content/recencia_papers/prepare_data.py \
   --input_file '/content/train.csv' \
@@ -30,7 +38,7 @@ Training set
   --do_train
  ```
 
- Test set (notice the difference in input file and do_predict)
+ *Test set (notice the difference in input file and do_predict)*
   ```python
 !python /content/recencia_papers/prepare_data.py \
   --input_file '/content/test.csv' \
@@ -41,8 +49,8 @@ Training set
 
 2. Model training (Catboost):
 
-*function: train.py
-*arguments:
+* function: train.py
+* arguments:
     * input_file: folder where the train.csv has been saved (usually same as above)
     * emb_folder: folder where the training text embeddings have been saved
     * output_dir: folder where to store the Catboost model weights
@@ -74,11 +82,4 @@ Training set
   --output_dir '/content/predictions/'
 ```
 
-## Example
-
-There are 2 Notebook examples saved in the examples folder.
-
-1. Recencia_Complete_demo.ipynb: Preprocess, train and predictions for the competition data. [Open in Google Colab](https://colab.research.google.com/drive/1KigW7wmRNurhIeh-QpQwX3awE6wkIAMG?usp=sharing)
-
-2. Recencia_FinalTest.ipynb: Final test prediction. [Open in Google Colab](https://colab.research.google.com/drive/10alE-Og8zbNJMpUI828uXWy8J-xSu622?usp=sharing)
 
