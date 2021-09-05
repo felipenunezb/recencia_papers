@@ -111,7 +111,14 @@ def main(args):
             X_train, y_train = X[train_index], Y[train_index]
             X_test, y_test = X[test_index], Y[test_index]
 
-            model = cb.CatBoostRegressor(eval_metric='MSLE', grow_policy = "Lossguide",bootstrap_type='Poisson',random_seed=0, task_type='GPU', od_type='Iter', od_wait=86, depth= 5, l2_leaf_reg=9.264310187012914, learning_rate= 0.025387195204195946, max_bin=299, model_size_reg=8.243800611558994, n_estimators=1000, num_leaves=39, subsample=0.7960154642805776)
+            #These hyperparameters were tuned/found previously
+            if lang == 'en':
+                model = cb.CatBoostRegressor(eval_metric='MSLE', grow_policy = "Lossguide",bootstrap_type='Poisson',random_seed=args.seed, task_type='GPU', od_type='Iter', od_wait=86, depth= 5, l2_leaf_reg=9.264310187012914, learning_rate= 0.025387195204195946, max_bin=299, model_size_reg=8.243800611558994, n_estimators=1000, num_leaves=39, subsample=0.7960154642805776)
+            elif lang == 'pt':
+                model = cb.CatBoostRegressor(eval_metric='MSLE', grow_policy = "Lossguide",bootstrap_type='Poisson',random_seed=args.seed, task_type='GPU', od_type='Iter', od_wait=86, depth=3, l2_leaf_reg=0.0932597179915462, learning_rate=0.07988103235176869, max_bin=152, model_size_reg=5.936090574644109, n_estimators=1000, num_leaves=17, subsample=0.8814987244793651)
+            else:
+                model = cb.CatBoostRegressor(eval_metric='MSLE', grow_policy = "Lossguide",bootstrap_type='Poisson', random_seed=args.seed, task_type='GPU', od_type='Iter', od_wait=86, depth=6, l2_leaf_reg=1.0550414450694667, learning_rate=0.021638099624990338, max_bin=299, model_size_reg=4.807836424649253, n_estimators=1000, num_leaves=38, subsample=0.6441769417293947)
+
             model.fit(X_train, y_train, eval_set=(X_test, y_test), use_best_model=True, early_stopping_rounds=86, verbose=False)
             model.save_model(os.path.join(args.output_dir, f"cat_{lang}_{fold_ix}.cbm"))
 
