@@ -4,7 +4,7 @@ Below you can find a outline of how to reproduce my solution for the [Recencia P
 If you run into any trouble with the setup/code or have any questions please contact me at f.nunezb@gmail.com
 
 ## ARCHIVE CONTENTS
-* models.zip                  : trained model weights. Can also be downloaded from [GDrive](https://docs.google.com/uc?export=download&id=1CP_IMdiYYheBXq_cckBeSdnIrBgaXWaM)
+* models.zip                  : trained model weights. Can also be downloaded from [GDrive](https://drive.google.com/drive/u/0/folders/1FuPJfw3SONb8fskGK5RYHCvbdFHvAeCd)
 * recencia_papers             : Github repo with codes and documentation
 
 ## HARDWARE/SOFTWARE: (The following specs were used to create the original solution)
