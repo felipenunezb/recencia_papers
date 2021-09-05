@@ -1,6 +1,6 @@
 # Recencia Papers
 
-Below you can find a outline of how to reproduce my solution for the Recencia Papers competition[https://www.datasource.ai/es/home/data-science-competitions-for-startups/predecir-el-puntaje-de-recencia-en-papers-de-investigacion].
+Below you can find a outline of how to reproduce my solution for the [Recencia Papers competition](https://www.datasource.ai/es/home/data-science-competitions-for-startups/predecir-el-puntaje-de-recencia-en-papers-de-investigacion).
 If you run into any trouble with the setup/code or have any questions please contact me at f.nunezb@gmail.com
 
 ## ARCHIVE CONTENTS
@@ -47,7 +47,7 @@ Training set
     * emb_folder: folder where the training text embeddings have been saved
     * output_dir: folder where to store the Catboost model weights
     * seed: defaults to 0, but could be other integers
-    
+
 ```python
 !python /content/recencia_papers/train.py \
   --input_file '/content/train.csv' \
